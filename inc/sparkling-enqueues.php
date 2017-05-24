@@ -19,7 +19,7 @@ function sparkling_companion_admin_scripts( $hook ) {
 		wp_enqueue_script( 'widget-js', plugins_url( 'assets/js/widget.js', dirname( __FILE__ ) ), array( 'media-upload' ), '1.0', true );
 
 		// Add Font Awesome stylesheet
-		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/inc/css/font-awesome.min.css' );
+		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css' );
 	}
 }
 
