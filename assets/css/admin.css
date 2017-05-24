@@ -1,0 +1,42 @@
+.sparkling-media-control img {
+    width: 100%;
+    height: auto;
+}
+
+.logo_heading {
+    display: block;
+    width: 100%;
+}
+
+#setting-error-tgmpa.notice {
+    display: block;
+}
+
+.clone-wrapper .logo_heading {
+    background: #f3f3f3;
+    border: 1px dotted;
+    cursor: move;
+    display: block;
+    font-size: 14px;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.clone-wrapper .logo_heading:hover {
+    border: 1px solid;
+}
+
+.clone-wrapper .cloneya a.clone,
+.clone-wrapper .cloneya a.delete {
+    display: none;
+}
+
+.clone-wrapper .cloneya:last-child a.clone,
+.clone-wrapper .cloneya:last-child a.delete {
+    display: inline-block;
+}
+
+.sparkling-media-control img {
+    width: 100%;
+}
