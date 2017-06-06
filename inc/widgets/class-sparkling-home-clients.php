@@ -20,7 +20,7 @@ class Sparkling_Home_Clients extends WP_Widget {
 		$logos = isset( $instance['client_logo'] ) ? $instance['client_logo'] : '';
 
 		echo $instance['before_widget'];
-		if ( gettype( $logos ) == 'object' ) {
+		if ( 'object' == gettype( $logos ) ) {
 			$logos = get_object_vars( $logos );
 		}
 
@@ -80,10 +80,10 @@ class Sparkling_Home_Clients extends WP_Widget {
 		}
 
 		if ( ! isset( $logos['img'] ) ) {
-			$logos['img'] = [ '' ];
+			$logos['img'] = array( '' );
 		}
 		if ( ! isset( $logos['link'] ) ) {
-			$logos['link'] = [ '' ];
+			$logos['link'] = array( '' );
 		}
 		?>
 

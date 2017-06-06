@@ -8,18 +8,18 @@ if ( ! defined( 'WPINC' ) ) {
 	<div class="import-full-content">
 		<p>
 			<a href="#" class="button button-primary"
-			   data-action="import-all"><?php _e( 'I want my site to look like your demo', 'sparkling-companion' ) ?></a>
+			   data-action="import-all"><?php _e( 'I want my site to look like your demo', 'sparkling' ) ?></a>
 			<span class="spinner"></span>
 		</p>
-		<div class="updated-message"><p><?php _e( 'Content Imported', 'sparkling-companion' ) ?></p></div>
+		<div class="updated-message"><p><?php _e( 'Content Imported', 'sparkling' ) ?></p></div>
 	</div>
 	<div>
-		<p><?php _e( 'I want only to import demo widgets', 'sparkling-companion' ) ?></p>
+		<p><?php _e( 'I want only to import demo widgets', 'sparkling' ) ?></p>
 		<p>
 			<a href="#" class="button button-secondary"
-			   data-action="import-widgets"><?php _e( 'Import Widgets', 'sparkling-companion' ) ?></a>
+			   data-action="import-widgets"><?php _e( 'Import Widgets', 'sparkling' ) ?></a>
 			<span class="spinner"></span>
 		</p>
-		<div class="updated-message"><p><?php _e( 'Content Imported', 'sparkling-companion' ) ?></p></div>
+		<div class="updated-message"><p><?php _e( 'Content Imported', 'sparkling' ) ?></p></div>
 	</div>
 </div>
