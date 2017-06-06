@@ -52,15 +52,5 @@ You can still use Sparkling theme without this plugin but you won't be able to i
 
 == Changelog ==
 
-= 1.0.5 =
-* Updated demo content importer
-* Allow html on title,description,buttons of Sparkling Parallax Widget
-
-= 1.0.3 =
-* Updated escape functions to allow users to enter minimal HTML in textareas
-
-= 1.0.2 =
-* Various bug fixes.
-
 = 1.0.0 =
 * Initial release.
