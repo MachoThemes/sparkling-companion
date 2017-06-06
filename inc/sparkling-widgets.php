@@ -17,21 +17,20 @@ function sparkling_companion_widgets_init() {
 		'home-parallax',
 		'home-contact',
 		'home-portfolio',
-		'home-testimonials',
-		'video'
+		'home-testimonial',
+		'video',
 	);
 
 	foreach ( $widgets as $widget ) {
-		require_once plugin_dir_path( __FILE__ ) . '/widgets/widget-' . $widget . '.php';
+		require_once plugin_dir_path( __FILE__ ) . '/widgets/class-sparkling-' . $widget . '.php';
 	}
 
-	register_widget( 'sparkling_home_parallax' );
-	register_widget( 'sparkling_home_parallax' );
-	register_widget( 'sparkling_home_features' );
-	register_widget( 'sparkling_home_CFA' );
-	register_widget( 'sparkling_home_clients' );
-	register_widget( 'sparkling_video' );
-	register_widget( 'sparkling_home_contact' );
+	register_widget( 'Sparkling_Home_Parallax' );
+	register_widget( 'Sparkling_Home_Features' );
+	register_widget( 'Sparkling_Home_Call_For_Action' );
+	register_widget( 'Sparkling_Home_Clients' );
+	register_widget( 'Sparkling_Video' );
+	register_widget( 'Sparkling_Home_Contact' );
 	register_widget( 'sparkling_home_portfolio' );
-	register_widget( 'sparkling_home_testimonial' );
+	register_widget( 'Sparkling_Home_Testimonial' );
 }

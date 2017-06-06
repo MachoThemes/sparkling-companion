@@ -4,24 +4,23 @@
  * Homepage parralax section Widget
  * Sparkling Theme
  */
-class sparkling_home_clients extends WP_Widget {
+class Sparkling_Home_Clients extends WP_Widget {
 	function __construct() {
 
 		$widget_ops = array(
 			'classname'                   => 'sparkling_home_clients',
-			'description'                 => esc_html__( "Sparkling Client Section That Displays Logos In A Slider", 'sparkling' ),
-			'customize_selective_refresh' => true
+			'description'                 => esc_html__( 'Sparkling Client Section That Displays Logos In A Slider', 'sparkling' ),
+			'customize_selective_refresh' => true,
 		);
 		parent::__construct( 'sparkling_home_clients', esc_html__( '[Sparkling] Client Section For FrontPage', 'sparkling' ), $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
-		extract( $args );
 		$title = isset( $instance['title'] ) && ! empty( $instance['title'] ) ? $instance['title'] : __( 'Our Main Clients', 'sparkling' );
 		$logos = isset( $instance['client_logo'] ) ? $instance['client_logo'] : '';
 
-		echo $before_widget;
-		if ( gettype( $logos ) == 'object' ) {
+		echo $instance['before_widget'];
+		if ( 'object' == gettype( $logos ) ) {
 			$logos = get_object_vars( $logos );
 		}
 
@@ -29,7 +28,7 @@ class sparkling_home_clients extends WP_Widget {
 		 * Widget Content
 		 */
 		?>
-		<?php if ( isset( $logos['img'] ) && count( $logos['img'] ) != 0 ) { ?>
+		<?php if ( isset( $logos['img'] ) && 0 != count( $logos['img'] ) ) { ?>
 			<section>
 				<div class="container">
 					<div class="row">
@@ -41,16 +40,16 @@ class sparkling_home_clients extends WP_Widget {
 					<div class="row">
 						<div class="logo-carousel">
 							<ul class="slides"><?php
-								for ( $i = 0; $i < count( $logos['img'] ); $i ++ ) {
-									if ( $logos['img'] != '' && $logos['link'] != '' ) { ?>
+							for ( $i = 0; $i < count( $logos['img'] ); $i ++ ) {
+								if ( '' != $logos['img'] && '' != $logos['link'] ) { ?>
 										<li>
 										<a href="<?php echo esc_url_raw( $logos['link'][ $i ] ); ?>">
 											<img alt="<?php _e( 'Logos', 'sparkling' ); ?>"
-											     src="<?php echo esc_url_raw( $logos['img'][ $i ] ); ?>"/>
+												 src="<?php echo esc_url_raw( $logos['img'][ $i ] ); ?>"/>
 										</a>
 										</li><?php
-									}
-								} ?>
+								}
+							} ?>
 							</ul>
 						</div>
 						<!--end of logo slider-->
@@ -63,7 +62,7 @@ class sparkling_home_clients extends WP_Widget {
 
 		<?php
 
-		echo $after_widget;
+		echo $instance['after_widget'];
 	}
 
 
@@ -75,26 +74,25 @@ class sparkling_home_clients extends WP_Widget {
 		$logos = array();
 		if ( ! empty( $instance['client_logo'] ) ) {
 			$logos = $instance['client_logo'];
-			if ( gettype( $logos ) == 'object' ) {
+			if ( 'object' == gettype( $logos ) ) {
 				$logos = get_object_vars( $logos );
 			}
 		}
 
 		if ( ! isset( $logos['img'] ) ) {
-			$logos['img'] = [ '' ];
+			$logos['img'] = array( '' );
 		}
 		if ( ! isset( $logos['link'] ) ) {
-			$logos['link'] = [ '' ];
+			$logos['link'] = array( '' );
 		}
 		?>
 
-		<p><label
-				for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
-
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
 			<input type="text" value="<?php echo esc_attr( $instance['title'] ); ?>"
-			       name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
-			       id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
-			       class="widefat"/>
+				   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
+				   id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+				   class="widefat"/>
 		</p>
 
 		<ul class="client-sortable clone-wrapper"><?php
@@ -102,33 +100,31 @@ class sparkling_home_clients extends WP_Widget {
 		$logo_link    = $logos['link'];
 		$slider_count = ( isset( $image_src ) && count( $image_src ) > 0 ) ? count( $image_src ) : 3;
 
-		for ( $i = 0; $i < $slider_count; $i ++ ): ?>
+		for ( $i = 0; $i < $slider_count; $i ++ ) : ?>
 			<li class="toclone">
 				<br>
 				<p class="sparkling-media-control"
 				   data-delegate-container="<?php echo esc_attr( $this->get_field_id( 'client_logo' ) . '-' . absint( $i ) ) ?>">
-					<label
-						class="logo_heading"
-						for="<?php echo esc_attr( $this->get_field_id( 'client_logo' ) . '-' . absint( $i ) ); ?>"><?php _e( 'Logo #', 'sparkling' );
-						?><span class="count"><?php echo absint( $i ) + 1; ?></span>:</label>
+					<label class="logo_heading" for="<?php echo esc_attr( $this->get_field_id( 'client_logo' ) . '-' . absint( $i ) ); ?>"><?php _e( 'Logo #', 'sparkling' ); ?>
+						<span class="count"><?php echo absint( $i ) + 1; ?></span>:
+					</label>
 
 					<img src="<?php echo ( isset( $image_src[ $i ] ) ) ? esc_url( $image_src[ $i ] ) : ''; ?>"/>
 
 					<input type="hidden"
-					       name="<?php echo esc_attr( $this->get_field_name( 'client_logo' ) . '[img][' . $i . ']' ); ?>"
-					       id="<?php echo esc_attr( $this->get_field_id( 'client_logo' ) . '-' . (int) $i ); ?>"
-					       value="<?php echo ( isset( $image_src[ $i ] ) ) ? esc_url( $image_src[ $i ] ) : ''; ?>"
-					       class="image-id blazersix-media-control-target">
+						   name="<?php echo esc_attr( $this->get_field_name( 'client_logo' ) . '[img][' . $i . ']' ); ?>"
+						   id="<?php echo esc_attr( $this->get_field_id( 'client_logo' ) . '-' . (int) $i ); ?>"
+						   value="<?php echo ( isset( $image_src[ $i ] ) ) ? esc_url( $image_src[ $i ] ) : ''; ?>"
+						   class="image-id blazersix-media-control-target">
 
-					<button type="button"
-					        class="button upload-button"><?php _e( 'Choose Image', 'sparkling' ); ?></button>
+					<button type="button" class="button upload-button"><?php _e( 'Choose Image', 'sparkling' ); ?></button>
 				</p>
 
 				<label><?php _e( 'Link:', 'sparkling' ); ?></label>
-				<input name="<?php echo esc_attr( $this->get_field_name( 'client_logo' ) . '[link][' . $i . "]" ); ?>"
-				       id="link<?php echo esc_attr( '-' . absint( $i ) ); ?>" class="widefat client-link" type="text"
-				       size="36"
-				       value="<?php echo ( isset( $logo_link[ $i ] ) ) ? esc_url( $logo_link[ $i ] ) : ''; ?>"/><br><br>
+				<input name="<?php echo esc_attr( $this->get_field_name( 'client_logo' ) . '[link][' . $i . ']' ); ?>"
+					   id="link<?php echo esc_attr( '-' . absint( $i ) ); ?>" class="widefat client-link" type="text"
+					   size="36"
+					   value="<?php echo ( isset( $logo_link[ $i ] ) ) ? esc_url( $logo_link[ $i ] ) : ''; ?>"/><br><br>
 
 				<a href="#" class="clone button-primary"><?php _e( 'Add', 'sparkling' ); ?></a>
 				<a href="#" class="delete button"><?php _e( 'Delete', 'sparkling' ); ?></a>
