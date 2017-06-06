@@ -56,8 +56,8 @@ function sparkling_companion_import_content() {
 
 		if ( 'import-all' == $_POST['import'] ) {
 
-			$frontpage_title = __( 'Front Page', 'sparkling-companion' );
-			$blog_title      = __( 'Blog', 'sparkling-companion' );
+			$frontpage_title = __( 'Front Page', 'sparkling' );
+			$blog_title      = __( 'Blog', 'sparkling' );
 
 			$frontpage_id = wp_insert_post( array(
 				'post_title'  => $frontpage_title,

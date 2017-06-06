@@ -1,7 +1,7 @@
 jQuery( document ).ready(function() {// jscs:ignore validateLineBreaks
 	jQuery( '#demo_content .button' ).click(function( evt ) {
 		var currentButton = jQuery( this );
-        var ajaxData = { action: 'sparkling_companion_import_content', import: jQuery( this ).data( 'action' ) };
+        var ajaxData = { 'action': 'sparkling_companion_import_content', 'import': jQuery( this ).data( 'action' ) };
         evt.preventDefault();
 		jQuery( this ).addClass( 'disabled' );
 		jQuery( this ).next( '.spinner' ).addClass( 'is-active' );
@@ -63,7 +63,7 @@ jQuery(function( $ ) {
 				return false;
 			}
 
-			jQuery.post( ajaxurl, data, function( response ) {
+			jQuery.post( sparklingCompanion.ajaxurl, data, function( response ) {
 				var ext = response.substr( ( response.lastIndexOf( '.' ) + 1 ) );
 				if ( 'mp4' === ext ) {
 					$( mediaControl.container ).find( '.video-path' ).text( response );

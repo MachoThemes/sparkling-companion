@@ -18,7 +18,7 @@ function sparkling_companion_post_meta_boxes_setup() {
 function sparkling_companion_add_post_meta_boxes() {
 
 	add_meta_box( 'sparkling-companion-portfolio-link',      // Unique ID
-		esc_html__( 'Portfolio link', 'example' ),    // Title
+		esc_html__( 'Portfolio link', 'sparkling' ),    // Title
 		'sparkling_companion_portfolio_link',   // Callback function
 		'sparkling_portfolio',         // Admin page (or post type)
 		'normal',         // Context
@@ -33,7 +33,7 @@ function sparkling_companion_portfolio_link( $post ) {
 
 	<?php wp_nonce_field( basename( __FILE__ ), 'sparkling_companion_portfolio_link_nonce' ); ?>
 	<p>
-		<label for="sparkling-companion-portfolio-link"><?php _e( 'This URL will replace the permalink in Portfolio widget.', 'example' ); ?></label>
+		<label for="sparkling-companion-portfolio-link"><?php _e( 'This URL will replace the permalink in Portfolio widget.', 'sparkling' ); ?></label>
 		<br />
 		<input class="widefat" type="text" name="sparkling-companion-portfolio-link" id="sparkling-companion-portfolio-link" value="<?php echo esc_url( get_post_meta( $post->ID, 'sparkling_companion_portfolio_link', true ) ); ?>" size="30" />
 	</p>
