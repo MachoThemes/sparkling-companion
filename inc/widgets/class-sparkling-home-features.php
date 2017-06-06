@@ -4,13 +4,13 @@
  * Homepage features section Widget
  * Sparkling Theme
  */
-class sparkling_home_features extends WP_Widget {
+class Sparkling_Home_Features extends WP_Widget {
 	function __construct() {
 
 		$widget_ops = array(
 			'classname'                   => 'sparkling_home_features',
-			'description'                 => esc_html__( "Widget to set Features in Home Section", 'sparkling' ),
-			'customize_selective_refresh' => true
+			'description'                 => esc_html__( 'Widget to set Features in Home Section', 'sparkling' ),
+			'customize_selective_refresh' => true,
 		);
 
 		parent::__construct( 'sparkling_home_features', esc_html__( '[Sparkling] Features Section For FrontPage', 'sparkling' ), $widget_ops );
@@ -18,7 +18,6 @@ class sparkling_home_features extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		extract( $args );
 		$title[0]        = isset( $instance['title'] ) ? $instance['title'] : '';
 		$body_content[0] = isset( $instance['body_content'] ) ? $instance['body_content'] : '';
 
@@ -34,7 +33,7 @@ class sparkling_home_features extends WP_Widget {
 		$body_content[2] = isset( $instance['body_content2'] ) ? $instance['body_content2'] : '';
 		$body_content[3] = isset( $instance['body_content3'] ) ? $instance['body_content3'] : '';
 
-		echo $before_widget;
+		echo $instance['before_widget'];
 
 		/**
 		 * Widget Content
@@ -50,8 +49,8 @@ class sparkling_home_features extends WP_Widget {
 				</div>
 				<!--end of row-->
 				<div class="row"><?php
-					for ( $i = 1; $i < 4; $i ++ ) {
-						if ( $title[ $i ] != '' ) { ?>
+				for ( $i = 1; $i < 4; $i ++ ) {
+					if ( '' != $title[ $i ] ) { ?>
 							<div class="col-sm-4">
 							<div class="feature feature-1">
 								<div class="text-center">
@@ -62,8 +61,8 @@ class sparkling_home_features extends WP_Widget {
 							</div>
 							<!--end of feature-->
 							</div><?php
-						}
-					} ?>
+					}
+				} ?>
 				</div>
 				<!--end of row-->
 			</div>
@@ -73,7 +72,7 @@ class sparkling_home_features extends WP_Widget {
 
 		<?php
 
-		echo $after_widget;
+		echo $instance['after_widget'];
 	}
 
 
@@ -116,63 +115,57 @@ class sparkling_home_features extends WP_Widget {
 		}
 		?>
 
-		<p><label
-				for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
-
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
 			<input type="text" value="<?php echo esc_attr( $instance['title'] ); ?>"
-			       name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
-			       id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
-			       class="widefat"/>
+				   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
+				   id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+				   class="widefat"/>
 		</p>
 
-		<p><label
-				for="<?php echo esc_attr( $this->get_field_id( 'body_content' ) ); ?>"><?php esc_html_e( 'Content ', 'sparkling' ) ?></label>
-
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'body_content' ) ); ?>"><?php esc_html_e( 'Content ', 'sparkling' ) ?></label>
 			<textarea name="<?php echo esc_attr( $this->get_field_name( 'body_content' ) ); ?>"
-			          id="<?php echo esc_attr( $this->get_field_id( 'body_content' ) ); ?>"
-			          class="widefat"><?php echo esc_attr( $instance['body_content'] ); ?></textarea>
+					  id="<?php echo esc_attr( $this->get_field_id( 'body_content' ) ); ?>"
+					  class="widefat"><?php echo esc_attr( $instance['body_content'] ); ?></textarea>
 		</p>
 
 
 		<?php for ( $i = 1; $i < 4; $i ++ ) { ?>
 			<br>
-			<b><?php echo sprintf( __( "Feature %s", 'sparkling' ), $i ); ?></b>
+			<b>
 
-			<p><label
-					for="<?php echo esc_attr( $this->get_field_id( 'title' . $i ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
-
+			<?php
+			/* translators: %s is used for feature index. Please don't translate */
+			echo sprintf( __( 'Feature %s', 'sparkling' ), $i ); ?></b>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' . $i ) ); ?>"><?php esc_html_e( 'Title ', 'sparkling' ) ?></label>
 				<input type="text" value="<?php echo esc_attr( $instance[ 'title' . $i ] ); ?>"
-				       name="<?php echo esc_attr( $this->get_field_name( 'title' . $i ) ); ?>"
-				       id="<?php echo esc_attr( $this->get_field_id( 'title' . $i ) ); ?>"
-				       class="widefat"/>
+					   name="<?php echo esc_attr( $this->get_field_name( 'title' . $i ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'title' . $i ) ); ?>"
+					   class="widefat"/>
 			</p>
 
-			<p><label
-					for="<?php echo esc_attr( $this->get_field_id( 'icon' . $i ) ); ?>"><?php esc_html_e( 'Icon( Font Awsome ) ', 'sparkling' ) ?></label><?php
-
-				$get_fontawesome_icons = $this->get_fontawesome_icons();
-				$icon                  = ( isset( $instance[ 'icon' . $i ] ) && $instance[ 'icon' . $i ] != '' ) ? esc_html( $instance[ 'icon' . $i ] ) : ''; ?>
-
-				<select class="sparkling-icon" id="<?php echo esc_attr( $this->get_field_id( 'icon' . $i ) ); ?>"
-				        name="<?php echo esc_attr( $this->get_field_name( 'icon' . $i ) ); ?>">
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'icon' . $i ) ); ?>"><?php esc_html_e( 'Icon( Font Awsome ) ', 'sparkling' ) ?></label>
+				<?php
+					$get_fontawesome_icons = $this->get_fontawesome_icons();
+					$icon                  = ( isset( $instance[ 'icon' . $i ] ) && '' != $instance[ 'icon' . $i ] ) ? esc_html( $instance[ 'icon' . $i ] ) : '';
+				?>
+				<select class="sparkling-icon" id="<?php echo esc_attr( $this->get_field_id( 'icon' . $i ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'icon' . $i ) ); ?>">
 					<option value=""><?php _e( 'Select Icon', 'sparkling' ); ?></option>
-					<?php foreach ( $get_fontawesome_icons as $key => $get_fontawesome_icon ): ?>
-						<option
-							value="fa <?php echo esc_attr( $key ); ?>" <?php selected( $icon, 'fa ' . $key ); ?>><?php echo esc_html( $get_fontawesome_icon ); ?></option>
+					<?php foreach ( $get_fontawesome_icons as $key => $get_fontawesome_icon ) : ?>
+						<option value="fa <?php echo esc_attr( $key ); ?>" <?php selected( $icon, 'fa ' . $key ); ?>><?php echo esc_html( $get_fontawesome_icon ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<span class="<?php echo esc_attr( $icon ); ?>"
-				      style="font-size: 24px;vertical-align: middle;margin-left: 10px;"></span>
+				<span class="<?php echo esc_attr( $icon ); ?>" style="font-size: 24px;vertical-align: middle;margin-left: 10px;"></span>
 			</p>
 
-			<p><label
-				for="<?php echo esc_attr( $this->get_field_id( 'body_content' . $i ) ); ?>"><?php esc_html_e( 'Content ', 'sparkling' ) ?></label>
-
-			<textarea name="<?php echo esc_attr( $this->get_field_name( 'body_content' . $i ) ); ?>"
-			          id="<?php echo esc_attr( $this->get_field_id( 'body_content' . $i ) ); ?>"
-			          class="widefat"><?php echo esc_attr( $instance[ 'body_content' . $i ] ); ?></textarea>
+			<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'body_content' . $i ) ); ?>"><?php esc_html_e( 'Content ', 'sparkling' ) ?></label>
+				<textarea name="<?php echo esc_attr( $this->get_field_name( 'body_content' . $i ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'body_content' . $i ) ); ?>" class="widefat"><?php echo esc_attr( $instance[ 'body_content' . $i ] ); ?></textarea>
 			</p><?php
-		}
+}// End for().
 	}
 
 	/**
@@ -731,7 +724,7 @@ class sparkling_home_features extends WP_Widget {
 			'fa-yelp'                 => 'fa-yelp',
 			'fa-youtube'              => 'fa-youtube',
 			'fa-youtube-play'         => 'fa-youtube-play',
-			'fa-youtube-square'       => 'fa-youtube-square'
+			'fa-youtube-square'       => 'fa-youtube-square',
 		);
 		foreach ( $icons as $icon ) {
 			$all_icons[ $icon ] = $icon;

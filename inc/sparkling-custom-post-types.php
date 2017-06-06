@@ -40,7 +40,7 @@ function sparkling_companion_portfolio() {
 	$args = array(
 		'label'                 => __( 'Portfolio', 'sparkling' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes', ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -50,7 +50,7 @@ function sparkling_companion_portfolio() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => true,		
+		'has_archive'           => true,
 		'exclude_from_search'   => true,
 		'publicly_queryable'    => true,
 		'query_var'             => 'portfolio',

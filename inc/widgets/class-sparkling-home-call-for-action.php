@@ -4,30 +4,29 @@
  * Homepage Call for Action section Widget
  * Sparkling Theme
  */
-class sparkling_home_CFA extends WP_Widget {
+class Sparkling_Home_Call_For_Action extends WP_Widget {
 	function __construct() {
 
 		$widget_ops = array(
 			'classname'   => 'sparkling_home_CFA',
-			'description' => esc_html__( "[Sparkling] Call for Action Section", 'sparkling' ),
-			'customize_selective_refresh' => true
+			'description' => esc_html__( '[Sparkling] Call for Action Section', 'sparkling' ),
+			'customize_selective_refresh' => true,
 		);
 		parent::__construct( 'sparkling_home_CFA', esc_html__( '[Sparkling] Call for Action Section For FrontPage', 'sparkling' ), $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
-		extract( $args );
 		$title       = isset( $instance['title'] ) ? $instance['title'] : '';
 		$button      = isset( $instance['button'] ) ? $instance['button'] : '';
 		$button_link = isset( $instance['button_link'] ) ? $instance['button_link'] : '';
 
-		echo $before_widget;
+		echo $instance['before_widget'];
 
 		/**
 		 * Widget Content
 		 */
 		?>
-		<?php if ( $title != '' ): ?>
+		<?php if ( '' != $title ) : ?>
 			<section class="cfa-section bg-secondary">
 			<div class="container">
 				<div class="row">
@@ -50,7 +49,7 @@ class sparkling_home_CFA extends WP_Widget {
 			</section><?php
 		endif;
 
-		echo $after_widget;
+		echo $instance['after_widget'];
 	}
 
 
@@ -70,27 +69,27 @@ class sparkling_home_CFA extends WP_Widget {
 				for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Callout Text ', 'sparkling' ) ?></label>
 
 			<input type="text" value="<?php echo esc_attr( $instance['title'] ); ?>"
-			       name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
-			       id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
-			       class="widefat"/>
+				   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
+				   id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+				   class="widefat"/>
 		</p>
 
 		<p><label
 				for="<?php echo esc_attr( $this->get_field_id( 'button' ) ); ?>"><?php esc_html_e( 'Button Text ', 'sparkling' ) ?></label>
 
 			<input type="text" value="<?php echo esc_attr( $instance['button'] ); ?>"
-			       name="<?php echo esc_attr( $this->get_field_name( 'button' ) ); ?>"
-			       id="<?php echo esc_attr( $this->get_field_id( 'button' ) ); ?>"
-			       class="widefat"/>
+				   name="<?php echo esc_attr( $this->get_field_name( 'button' ) ); ?>"
+				   id="<?php echo esc_attr( $this->get_field_id( 'button' ) ); ?>"
+				   class="widefat"/>
 		</p>
 
 		<p><label
 			for="<?php echo esc_attr( $this->get_field_id( 'button_link' ) ); ?>"><?php esc_html_e( 'Button Link ', 'sparkling' ) ?></label>
 
 		<input type="text" value="<?php echo esc_url( $instance['button_link'] ); ?>"
-		       name="<?php echo esc_attr( $this->get_field_name( 'button_link' ) ); ?>"
-		       id="<?php echo esc_attr( $this->get_field_id( 'button_link' ) ); ?>"
-		       class="widefat"/>
+			   name="<?php echo esc_attr( $this->get_field_name( 'button_link' ) ); ?>"
+			   id="<?php echo esc_attr( $this->get_field_id( 'button_link' ) ); ?>"
+			   class="widefat"/>
 		</p><?php
 	}
 
