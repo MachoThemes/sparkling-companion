@@ -3,7 +3,7 @@ Contributors: colorlibplugins, silkalns
 Tags: woocommerce, widgets, plugin, demo, companion, home page, one page, parallax, social, portfolio, projects
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.0.0
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,6 +51,9 @@ Currently it works only with Sparkling theme.
 You can still use Sparkling theme without this plugin but you won't be able to import demo content and use theme specific widgets that you see on front page of theme demo.
 
 == Changelog ==
+
+= 1.0.6 =
+* Improved compatibility with Kali Forms plugin
 
 = 1.0.5 =
 * Updated demo content importer

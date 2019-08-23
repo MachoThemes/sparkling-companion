@@ -3,7 +3,7 @@
  * Plugin Name:       Sparkling Companion
  * Plugin URI:        https://colorlib.com/wp/themes/sparkling/
  * Description:       Sparkling Companion is a companion plugin for Sparkling theme.
- * Version:           1.0.0
+ * Version:           1.0.6
  * Author:            Colorlib
  * Author URI:        https://colorlib.com
  * License:           GPL-2.0+
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'SPARKLING_COMPANION', '1.0.0' );
+define( 'SPARKLING_COMPANION', '1.0.6' );
 
 /**
  * Load the Dashboard Widget
