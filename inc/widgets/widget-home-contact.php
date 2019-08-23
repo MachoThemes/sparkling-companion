@@ -99,11 +99,15 @@ class sparkling_home_contact extends WP_Widget
                         </div>
                         <div class="col-md-8">
                             <?php
-
-                            if ( $contactform != '' ) {
-								echo defined( 'KALIFORMS_VERSION' ) ? do_shortcode( '[kaliform id="' . absint( $contactform ) . '"]' ) : do_shortcode( '[contact-form-7 id="' . absint( $contactform ) . '"]' );
-                            }
-
+							if ( '' != $contactform && is_numeric( $contactform ) ) {
+								$post = get_post( $contactform );
+								if ( 'kaliforms_forms' === $post->post_type ) {
+									echo do_shortcode( '[kaliform id="' . absint( $contactform ) . '"]' );
+								}
+								if ( 'wpcf7_contact_form' === $post->post_type ) {
+									echo do_shortcode( '[contact-form-7 id="' . absint( $contactform ) . '"]' );
+								}
+							}
                             ?>
                         </div>
                     </div>
@@ -186,7 +190,7 @@ class sparkling_home_contact extends WP_Widget
             <?php
 
                 if ( !defined( 'KALIFORMS_VERSION' ) ) {
-                    echo '<br><span>'.esc_html__('Please install Kaliforms plugin', 'sparkling').'</span>';
+                    echo '<br><span>'.esc_html__('Please install Kali Forms plugin', 'sparkling').'</span>';
                     echo '<input type="hidden" id="'.esc_attr($this->get_field_name('contactform')).'" name="'.esc_attr($this->get_field_name('contactform')).'" value="0">';
                 }else{
                     echo '<select id="'.esc_attr($this->get_field_name('contactform')).'" name="'.esc_attr($this->get_field_name('contactform')).'" class="widefat">';
