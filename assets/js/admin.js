@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-	jQuery('#demo_content .button').click(function (evt) {
+	jQuery('#demo_content .button').on('click', function (evt) {
 		evt.preventDefault();
 		var currentButton = jQuery(this);
 		jQuery(this).addClass('disabled');
@@ -70,7 +70,7 @@ jQuery(function ($) {
 					$(mediaControl.container).find('img').attr('src', response);
 				}
 
-				selector.val(response).change();
+				selector.val(response).trigger('change');
 			});
 		},
 

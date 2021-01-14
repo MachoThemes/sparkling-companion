@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
 	/* Client widget sorting and cloning*/
 
 	/* Font awsome selector */
-	jQuery('select.sparkling-icon').change(function () {
+	jQuery('select.sparkling-icon').on('change', function () {
 		jQuery(this).siblings('span').removeClass().addClass('fa ' + jQuery(this).val());
 	});
 
